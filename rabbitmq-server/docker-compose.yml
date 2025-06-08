@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    # 🐇 Official image with management plug-in gives a nice web UI at :15672
+    image: rabbitmq:3.13-management
+    container_name: rabbit-food-demo
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # Management UI http://localhost:15672  (guest/guest)
+    environment:
+      # Optional tuning knobs
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+#    healthcheck:
+#      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
