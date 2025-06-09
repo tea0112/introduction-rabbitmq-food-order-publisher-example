@@ -123,7 +123,7 @@ func main() {
 			"restaurant_id": "restaurant_abc",
 		}
 		if i == 2 { // Inject a poison message
-			order["order_id"] = "poison"
+			order["order_id"] = "order_id_POISON"
 		}
 		orderJSON, _ := json.Marshal(order)
 		err = ch.PublishWithContext(
