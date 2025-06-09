@@ -208,7 +208,7 @@ func main() {
 				ContentType: "application/json",
 				Body:        statusJSON,
 				Headers:     amqp.Table{"status": "in_transit"}, // headers for routing
-				Expiration:  "1",                                // TTL of 5 seconds
+				Expiration:  "5000",                             // TTL of 5 seconds
 			},
 		)
 		if err != nil {
