@@ -142,7 +142,7 @@ func main() {
 		} else {
 			log.Printf("Published order %s to restaurant_abc", order["order_id"])
 		}
-		time.Sleep(time.Millisecond * 500) // Simulate delay between publishes
+		time.Sleep(time.Millisecond * 300) // Simulate delay between publishes
 
 		// 2. Fanout Exchange: Order Ready Notification
 		ready := map[string]string{
@@ -165,7 +165,7 @@ func main() {
 		} else {
 			log.Printf("Published order %s ready notification", ready["order_id"])
 		}
-		time.Sleep(time.Millisecond * 500) // Simulate delay between publishes
+		time.Sleep(time.Millisecond * 300) // Simulate delay between publishes
 
 		// 3. Topic Exchange: Delivery Assignment
 		assignment := map[string]string{
@@ -190,7 +190,7 @@ func main() {
 		} else {
 			log.Printf("Published delivery assignment for order %s", assignment["order_id"])
 		}
-		time.Sleep(time.Millisecond * 500) // Simulate delay between publishes
+		time.Sleep(time.Millisecond * 300) // Simulate delay between publishes
 
 		// 4. Headers Exchange: Status Update with TTL
 		status := map[string]string{
@@ -208,7 +208,7 @@ func main() {
 				ContentType: "application/json",
 				Body:        statusJSON,
 				Headers:     amqp.Table{"status": "in_transit"}, // headers for routing
-				Expiration:  "5000",                             // TTL of 5 seconds
+				Expiration:  "1",                                // TTL of 5 seconds
 			},
 		)
 		if err != nil {
